@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-container{
+            background-color: aqua;
+            text-align: center;
+            padding: 50px;
+            width: 700px;
+           
+        }
+        .atm-container{
+            background-color: rgb(161, 180, 180);
+            margin-left: 50px;
+            padding: 50px;
+            box-shadow: inset;
+            border-radius: 20px;
+            width: 500px;
+        }
+        .input{
+            border: 0;
+            border-radius: 5px;
+            height: 40px;
+            margin-right: 20px;
+        }
+        .saving-amount{
+            color: green;
+            font-size: 30px;
+            font-weight: 400;
+        }
+        .saving-input{
+            width: 100px;
+            background-color: green;
+            color: white;
+            font-size: 30px;
+        }
+        .sucess-msg{
+            font-family: "roboto";
+            font-size: 30px;
+            color: green;
+        }
+        .button {
+            width: 80px;
+            height: 30px;
+            color: white;
+            padding: 5px;
+            background-color: blueviolet;
+            border-radius: 5px;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <div class="atm-container">
+            <h1 class="heading">ATM Withdrawl</h1>
+            <p class="saving-amount">saving amount = <span class="savings-amount" id="savingsAmountId"></span></p>
+            <input class="input" id="WithdrawlAmountId" type="number">
+            <button class="button" id="buttonId">WithDrawl</button>
+            <P class="sucess-msg" id="successId"></P>
+        </div>
+    </div>
+    <script>
+        let savingEle = document.getElementById("savingsAmountId");
+        let randomAmount = Math.ceil(Math.random()*15);
+        savingEle.textContent = randomAmount*1000
+        let buttonEle = document.getElementById("buttonId");
+        let WithdrawEle =  document.getElementById("WithdrawlAmountId");
+        let WithdrawSuccessEle =  document.getElementById("successId");
+        
+        buttonEle.onclick = function(){
+            console.log(typeof savingEle.innerText, typeof WithdrawEle.value,savingEle.innerText > WithdrawEle.value);
+           if(Number(savingEle.innerText) > Number(WithdrawEle.value)) {
+                let remainingBal = (savingEle.innerText - WithdrawEle.value);
+                WithdrawSuccessEle.textContent = `withdrawl Sucess remaining bal: ${remainingBal}`;
+            } else {
+                WithdrawSuccessEle.textContent = `Insufficient bal:  ${savingEle.innerText}`;
+                
+            }
+         };
+        
+    </script>
+</body>
+</html>
